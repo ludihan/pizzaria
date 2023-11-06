@@ -15,16 +15,16 @@ public abstract class FacadePizza {
 		Random random = new Random();
 		builder.setQueijo(random.nextBoolean())
 			   .setTomate(random.nextBoolean())
-			   .setMassa(Massa.randomMassa());
+			   .setMassa(Massa.getRandomMassa());
 		for (int i = 0; i < numToppings; i++) {
-			builder.addTopping(Topping.randomTopping());
+			builder.addTopping(Topping.getRandomTopping());
 		}
 		return builder.buildPizza();
 	}
 	
 	 
 	 
-	public static Pizza criarPizza() {
+	public static Pizza criarPizza(int numToppings) {
 		PizzaBuilder builder = new PizzaBuilder();
 		Scanner scn = new Scanner(System.in);
 		String input;
@@ -57,27 +57,22 @@ public abstract class FacadePizza {
 		while (true) {
 			System.out.print("Tipo de massa [grossa/fina]: ");
 			input = scn.nextLine().trim();
-			if (input.equals("grossa") || input.equals("fina")) {
-				if (input.equals("grossa")) {
-					builder.setMassa(Massa.GROSSA); 
-				} else {
-					builder.setMassa(Massa.FINA);
-				}
+			if (Massa.isMassa(input)) {
+				builder.setMassa(Massa.getToppingFromString(input));
 				break;
 			}
 		}
 		
-		int i = 5;
 		
 		while (true) {
-			if (i == 0) {
+			if (numToppings == 0) {
 				break;
 			}
-			System.out.println("Toppings faltando: " + i);
+			System.out.println("Toppings faltando: " + numToppings);
 			System.out.print("Adicione os toppings: ");
 			input = scn.nextLine().trim();
 			if (Topping.isTopping(input)) {
-				i--;
+				numToppings--;
 				builder.addTopping(Topping.getToppingFromString(input));
 			}
 		}

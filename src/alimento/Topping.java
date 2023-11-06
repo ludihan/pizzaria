@@ -16,7 +16,7 @@ public enum Topping {
 	
 	private static final Random random = new Random();
 	
-	public static Topping randomTopping() {
+	public static Topping getRandomTopping() {
 		Topping[] toppings = values();
 		return toppings[random.nextInt(toppings.length)];
 	}

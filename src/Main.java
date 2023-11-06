@@ -8,7 +8,7 @@ public class Main {
 		Pizza cliente = FacadePizza.criarPizzaAle(5);
 		FacadePizza.descreverPizzaCliente(cliente);
 		System.out.println();
-		Pizza player = FacadePizza.criarPizza();
+		Pizza player = FacadePizza.criarPizza(5);
 		FacadePizza.compararPizza(player, cliente);
 		
 	}
